@@ -1,0 +1,17 @@
+[profile.default]
+src = 'src'
+out = 'out'
+libs = ['lib']
+bytecode_hash = 'none'
+remappings = [
+    'seaport-sol/=lib/seaport/contracts/helpers/sol/',
+    'seaport/=lib/seaport/src',
+    'forge-std/=lib/forge-std/src',
+]
+[fmt]
+bracket_spacing = true
+number_underscore = "thousands"
+wrap_comments = true
+line_length = 80
+
+# See more config options https://github.com/foundry-rs/foundry/tree/master/config
