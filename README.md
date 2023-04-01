@@ -8,5 +8,6 @@ Aquaculture makes the following enforcements
 
 In other words:
 - Aquaculture will give or receive 1 wei for each individual `SpentItem` in the complementary array
+- there should only be one `SpentItem` for the total wei
 - Aquaculture will only pay/receive 1 wei for any number of ERC1155 tokens specified by a `SpentItem`
 
