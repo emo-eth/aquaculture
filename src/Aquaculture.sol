@@ -261,7 +261,7 @@ contract Aquaculture is SIP5 {
     }
 
     /**
-     * @dev enforce 1 wei per token
+     * @dev enforce 1 wei per item (but not per amount)
      */
     function _validateNativeAmount(uint256 length, uint256 value)
         internal
