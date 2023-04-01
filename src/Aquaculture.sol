@@ -190,11 +190,12 @@ contract Aquaculture is SIP5 {
         uint256 itemsLength = items.length;
         receivedItems = new ReceivedItem[](itemsLength);
         for (uint256 i = 0; i < itemsLength;) {
+            SpentItem memory item = items[i];
             receivedItems[i] = ReceivedItem({
-                itemType: items[i].itemType,
-                token: items[i].token,
-                identifier: items[i].identifier,
-                amount: items[i].amount,
+                itemType: item.itemType,
+                token: item.token,
+                identifier: item.identifier,
+                amount: item.amount,
                 recipient: payable(this)
             });
             unchecked {
