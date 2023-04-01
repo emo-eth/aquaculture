@@ -141,7 +141,7 @@ contract Aquaculture is SIP5 {
         minReceivedNative = minimumReceived[0].itemType == ItemType.NATIVE;
         bool maxSpentNative = maximumSpent[0].itemType == ItemType.NATIVE;
 
-        // only allow ether<->nfts
+        // only allow native<->nfts
         if (!(minReceivedNative || maxSpentNative)) {
             revert InvalidItemType();
         } else if (minReceivedNative && maxSpentNative) {
