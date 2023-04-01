@@ -5,8 +5,8 @@ libs = ['lib']
 bytecode_hash = 'none'
 remappings = [
     'seaport-sol/=lib/seaport/contracts/helpers/sol/',
-    'seaport/=lib/seaport/src',
-    'forge-std/=lib/forge-std/src',
+    'seaport/=lib/seaport/contracts/',
+    'forge-std/=lib/forge-std/src/',
 ]
 [fmt]
 bracket_spacing = true
