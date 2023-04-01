@@ -5,3 +5,7 @@ branch = v1.5.2
 [submodule "lib/seaport"]
 path = lib/seaport
 url = https://github.com/projectopensea/seaport
+[submodule "lib/openzeppelin-contracts"]
+	path = lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
+	branch = v4.8.2

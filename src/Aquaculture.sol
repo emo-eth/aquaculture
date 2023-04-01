@@ -12,10 +12,18 @@ import { IERC721 } from "forge-std/interfaces/IERC721.sol";
 import { IERC1155 } from "forge-std/interfaces/IERC1155.sol";
 import { SIP5 } from "./lib/SIP5.sol";
 
+
+/**
+ * @title Aquaculture
+ * @author emo.eth
+ * @notice Aquaculture is a simple, proof-of-concept SIP-5 Seaport contract
+ * offerer that will pay 1 wei for any ERC721 token or any amount of a particular
+ * ERC1155 tokenId, and will likewise sell any token it owns for 1 wei.
+ */
 contract Aquaculture is SIP5 {
     error InvalidItemType();
-    error MinimumSpentCannotBeEmpty();
-    error MaximumReceivedCannotBeEmpty();
+    error MinimumReceivedCannotBeEmpty();
+    error MaximumSpentCannotBeEmpty();
     error OnlyOneNativeItem();
     error InvalidNativeAmount();
     error OnlySeaport();
@@ -133,10 +141,10 @@ contract Aquaculture is SIP5 {
         SpentItem[] calldata maximumSpent
     ) internal pure returns (bool minReceivedNative, uint256 nativeAmount) {
         if (minimumReceived.length == 0) {
-            revert MinimumSpentCannotBeEmpty();
+            revert MinimumReceivedCannotBeEmpty();
         }
         if (maximumSpent.length == 0) {
-            revert MaximumReceivedCannotBeEmpty();
+            revert MaximumSpentCannotBeEmpty();
         }
         minReceivedNative = minimumReceived[0].itemType == ItemType.NATIVE;
         bool maxSpentNative = maximumSpent[0].itemType == ItemType.NATIVE;
