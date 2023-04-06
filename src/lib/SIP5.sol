@@ -25,7 +25,7 @@ abstract contract SIP5 is ContractOffererInterface, IERC165 {
      */
     function getSeaportMetadata()
         external
-        pure
+        view
         virtual
         returns (string memory name_, Schema[] memory schemas)
     {

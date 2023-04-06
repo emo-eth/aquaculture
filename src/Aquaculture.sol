@@ -7,18 +7,17 @@ import {
     Schema
 } from "seaport/lib/ConsiderationStructs.sol";
 import { ItemType } from "seaport/lib/ConsiderationEnums.sol";
-
 import { IERC721 } from "forge-std/interfaces/IERC721.sol";
 import { IERC1155 } from "forge-std/interfaces/IERC1155.sol";
 import { SIP5 } from "./lib/SIP5.sol";
-
 
 /**
  * @title Aquaculture
  * @author emo.eth
  * @notice Aquaculture is a simple, proof-of-concept SIP-5 Seaport contract
- * offerer that will pay 1 wei for any ERC721 token or any amount of a particular
- * ERC1155 tokenId, and will likewise sell any token it owns for 1 wei.
+ * offerer that will pay 1 wei for any ERC721 token or any amount of a
+ * particular ERC1155 tokenId, and will likewise sell any token it owns for 1
+ * wei.
  */
 contract Aquaculture is SIP5 {
     error InvalidItemType();
@@ -30,7 +29,6 @@ contract Aquaculture is SIP5 {
     error TokenApprovalFailed();
     error NativeTransferFailed();
 
-    string constant _name = "Aquaculture";
     address immutable SEAPORT;
 
     constructor(address seaport) payable {
@@ -42,8 +40,22 @@ contract Aquaculture is SIP5 {
      */
     receive() external payable { }
 
-    function name() public pure override returns (string memory) {
-        return _name;
+    function name() public pure override returns (string memory name_) {
+        // homage to seaport:
+        // since this function may be called internally, it shouldn't
+        // clobber scratch space. let solidity handle returndata encoding
+        // for external calls
+        assembly {
+            // load free memory pointer
+            let ptr := mload(0x40)
+            // assign string pointer to free memory pointer
+            name_ := ptr
+            // store length and string simultaneously, spanning 2 words
+            // length: 11, "Aquaculture"
+            mstore(add(name_, 0x0b), 0x0b4171756163756c74757265)
+            // increment free mem ptr by two words
+            mstore(0x40, add(ptr, 0x40))
+        }
     }
 
     /**
